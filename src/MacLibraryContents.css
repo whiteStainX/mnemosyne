@@ -1,0 +1,201 @@
+.Mac-Library-Header-Platinum {
+    /* Tuck the bottom border under the list header */
+    margin-bottom: -1px;
+}
+
+.Mac-Library-Table {
+    table-layout: fixed;
+    border-spacing: 0;
+    font-size: 12px;
+    width: 100%;
+}
+
+.Mac-Library-Table thead {
+    position: sticky;
+    top: 0;
+}
+
+.Mac-Library-Table th,
+.Mac-Library-Table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px 4px;
+}
+
+.Mac-Library-Table th:first-child,
+.Mac-Library-Table td:first-child {
+    padding-left: 8px;
+}
+
+.Mac-Library-Table th:last-child,
+.Mac-Library-Table td:last-child {
+    padding-right: 8px;
+}
+
+.Mac-Library-Table th {
+    text-align: left;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: normal;
+}
+
+.Mac-Library-Table th.narrow {
+    width: 64px;
+}
+
+.Mac-Library-Table th.wide {
+    width: 50%;
+}
+
+.Mac-Library-Table-Classic thead {
+    background: #fff;
+}
+
+.Mac-Library-Table-Classic tbody tr:hover {
+    background: #fafafa;
+    cursor: default;
+}
+
+.Mac-Library-Table-Classic th {
+    border-bottom: double 3px #000;
+}
+
+.Mac-Library-Table-Classic:not(:first-child) th {
+    border-top: solid 1px #000;
+}
+
+.Mac-Library-Table-Classic th.selected {
+    text-decoration: underline;
+}
+
+.Mac-Library-Table-Platinum th {
+    padding: 0 !important;
+}
+
+.Mac-Library-Table-Platinum th .BevelButton {
+    width: 100%;
+}
+
+.Mac-Library-Table-Platinum tbody tr {
+    background: #eee;
+}
+
+.Mac-Library-Table-Platinum tbody td {
+    border-bottom: solid 1px #fff;
+}
+
+.Mac-Library-Table-Platinum tbody td.selected {
+    background: #ddd;
+}
+
+.Mac-Library-Table-Platinum tbody tr:hover {
+    background: #ddd;
+    cursor: default;
+}
+
+.Mac-Library-Table-Platinum tbody tr:hover td.selected {
+    background: #ccc;
+}
+
+.Mac-Library-Table-Footer {
+    text-align: center;
+    opacity: 0.5;
+}
+
+.Mac-Library-Table-Classic .Mac-Library-Table-Footer {
+    border-top: solid 1px #000;
+}
+
+.Mac-Library-Item-Details {
+    padding: 8px;
+    overflow: auto;
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    min-height: 100%;
+}
+
+@media (max-width: 640px) {
+    .Mac-Library-Item-Details {
+        flex-direction: column;
+    }
+
+    .Mac-Library-Item-Details-Column {
+        width: 100%;
+        max-width: none !important;
+    }
+}
+
+.Mac-Library-Item-Details-Platinum {
+    background: #eee;
+}
+
+.Mac-Library-Item-Details-Column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.Mac-Library-Item-Details-Column:first-child {
+    max-width: 342px;
+    flex-shrink: 0;
+}
+
+.Mac-Library-Item-Details-Title {
+    flex: 1;
+    font-size: 18px;
+}
+
+.Mac-Library-Item-Details-Description div,
+.Mac-Library-Item-Details-Description blockquote {
+    margin: 0;
+}
+
+.Mac-Library-Item-Details-Description blockquote {
+    border-left: solid 2px #999;
+    padding-left: 8px;
+}
+
+.Mac-Library-Item-Details-Description blockquote br:first-child {
+    display: none;
+}
+
+.Mac-Library-Item-Details-Description p:empty {
+    display: none;
+}
+
+.Mac-Library-Item-Details-Description p:first-child {
+    margin-top: 0;
+}
+
+.Mac-Library-Item-Details-Description p:last-child {
+    margin-bottom: 0;
+}
+
+.Mac-Library-Item-Details-Table th {
+    text-align: right;
+    vertical-align: top;
+}
+
+.Mac-Library-Item-Details-Table td {
+    vertical-align: top;
+}
+
+.Mac-Library-Item-Details-Downloads ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.Mac-Library-Item-Details-Downloads ol li {
+    margin-bottom: 4px;
+}
+
+.Mac-Library-Item-Details-Downloads ol li::marker {
+    content: "#" counter(list-item) " ";
+    color: #666;
+}
+
+.Mac-Library-Item-Details-Downloads .size {
+    color: #999;
+}

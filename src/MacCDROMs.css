@@ -1,0 +1,58 @@
+.Mac-CDROMs-Instructions {
+    flex-grow: 1;
+}
+
+.Mac-CDROMs-Controls {
+    display: flex;
+    gap: 8px;
+}
+
+.Mac-CDROMs-Header input[type="search"]:placeholder-shown {
+    width: 60px;
+}
+
+.Mac-CDROMs-Contents .link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #00c;
+}
+
+.Mac-Custom-CDROM-URL {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.Mac-CDROM {
+    cursor: pointer;
+    max-width: 128px;
+    padding: 8px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.Mac-CDROM:active {
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.Mac-CDROM-Cover {
+    height: 96px;
+    width: auto;
+    overflow: auto;
+}
+
+.Mac-CDROM-Cover.Default {
+    image-rendering: pixelated;
+}
+
+.Mac-CDROM-Cover-Round {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+@media (max-width: 640px) {
+    .Mac-CDROMs-Controls {
+        flex-direction: column;
+    }
+}

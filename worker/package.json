@@ -1,0 +1,11 @@
+{
+    "private": true,
+    "name": "worker",
+    "version": "1.0.0",
+    "description": "Cloudflare Worker for serving Infinite Mac",
+    "main": "index.ts",
+    "license": "Apache",
+    "devDependencies": {
+        "@cloudflare/workers-types": "^4.20250525.0"
+    }
+}
