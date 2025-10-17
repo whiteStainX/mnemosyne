@@ -1,10 +1,19 @@
-FROM alpine:latest
+FROM debian:bullseye-slim
 
 # Install "hollywood hacker" tools and a shell
-RUN apk add --no-cache bash cmatrix hollywood neofetch
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    cmatrix \
+    hollywood \
+    neofetch \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create a user
-RUN adduser -D user
+RUN useradd -m -s /bin/bash user
+
+# Create the test script
+RUN echo -e '#!/bin/sh\necho "Mnemosyne test script running!"' > /usr/local/bin/mnemosyne-test && \
+    chmod +x /usr/local/bin/mnemosyne-test
 
 # Set up the custom assets
 COPY assets/ /home/user/
