@@ -1,0 +1,71 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+/XADMaster-build
+/dmg2img
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+
+# TypeScript cached build info
+*.tsbuildinfo
+
+# generated source map with local paths
+public/*.wasm.map
+
+# generated disk image chunks and manifest
+src/Data/*.dsk.json
+/Images/build
+
+# generated CD-ROM catalog
+src/Data/CD-ROMs.json
+public/Covers
+
+# generated library catalog (index and details)
+src/Data/Library-index.json
+src/Data/Library-details.json
+
+# Cloudflare Worker wrangler CLI state
+.wrangler
+
+# Claude Code
+.claude/
+
+# rclone configuration with access key/secrets
+scripts/rclone.conf
+
+# We only commit the compressed versions of these images, but having the
+# uncompressed ones around is useful for local development.
+Images/Saved HD.dsk
+Images/NeXTStep 0.8 HD.dsk
+Images/NeXTStep 0.9 HD.dsk
+Images/NeXTStep 1.0 HD.dsk
+Images/NeXTStep 1.0a HD.dsk
+Images/NeXTStep 2.0 HD.dsk
+Images/NeXTStep 2.1 HD.dsk
+Images/NeXTStep 2.2 HD.dsk
+Images/NeXTSTEP 3.0 HD.dsk
+Images/NeXTSTEP 3.1 HD.dsk
+Images/NeXTSTEP 3.2 HD.dsk
+Images/NeXTSTEP 3.3 HD.dsk
+Images/NeXTSTEP 4.0 HD.dsk
+Images/OPENSTEP 4.0 HD.dsk
+Images/OPENSTEP 4.2 HD.dsk
+Images/Infinite HD (NeXT).dsk
+Images/Mac OS X 10.0 (Public Beta) HD.dsk
+Images/Mac OS X 10.0.4 HD.dsk
+Images/Mac OS X 10.1.5 HD.dsk
+Images/Mac OS X 10.2.8 HD.dsk
+Images/Mac OS X 10.3.9 HD.dsk
+Images/Mac OS X 10.4.11 HD.dsk

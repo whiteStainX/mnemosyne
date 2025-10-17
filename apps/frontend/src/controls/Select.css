@@ -1,0 +1,87 @@
+.Select {
+    border-image-slice: 3 22 3 3 fill;
+    border-image-width: 3px 22px 3px 3px;
+    border-image-repeat: stretch stretch;
+    border-width: 3px 22px 3px 3px;
+    box-sizing: border-box;
+    height: 20px;
+    image-rendering: pixelated;
+    background: transparent;
+    padding: 0;
+    font-size: 12px;
+    line-height: 12px;
+    color: #000;
+    user-select: none;
+    -moz-appearance: none;
+}
+
+.Select:active {
+    color: #fff;
+}
+
+.Select:focus {
+    outline: none;
+}
+
+.Select:focus-visible {
+    outline: 2px solid #000000;
+    outline-offset: -1px;
+    border-radius: 2px;
+}
+
+.Select:disabled {
+    opacity: 0.5;
+}
+
+.Select.Select-Classic {
+    border-image-source: url(../Images/ClassicSelect.png);
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.Select.Select-Classic:active {
+    border-image-source: url(../Images/ClassicSelect-Active.png);
+}
+
+.Select.Select-Platinum {
+    border-image-source: url(../Images/PlatinumSelect.png);
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.Select.Select-Platinum:active {
+    border-image-source: url(../Images/PlatinumSelect-Active.png);
+}
+
+.Select.Select-Platinum:focus-visible {
+    outline-color: #6666c5;
+}
+
+.Select.Select-Aqua {
+    border-image-source: url(../Images/AquaSelect.png);
+    border-image-slice: 12 24 12 9 fill;
+    border-image-width: 12px 24px 12px 9px;
+    border-image-repeat: stretch stretch;
+    border-width: 2px 24px 4px 4px;
+    height: 26px;
+    font-size: 13px;
+}
+
+.Select.Select-Aqua:active {
+    border-image-source: url(../Images/AquaSelect-Active.png);
+}
+
+.Select.Select-Aqua:focus-visible {
+    outline-color: #8bb4e9cc;
+    outline-offset: -2px;
+    border-radius: 3px;
+}
+
+.Select.Select-NeXT {
+    border-image-source: url(../Images/NeXTSelect.png);
+}
+
+.Select.Select-NeXT:active {
+    color: #000;
+    border-image-source: url(../Images/NeXTSelect-Active.png);
+}

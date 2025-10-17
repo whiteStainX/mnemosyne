@@ -1,0 +1,9 @@
+.Monkey-CollectProviderAPIKeyDialog-Note {
+    max-width: 320px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.Monkey-CollectProviderAPIKeyDialog input {
+    width: 320px;
+}

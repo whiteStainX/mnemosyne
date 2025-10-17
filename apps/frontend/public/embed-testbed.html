@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Embed Testbed</title>
+        <style>
+            input[type="number"] {
+                width: 32px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Embed Testbed</h1>
+        <form action="/embed" method="get" target="frame">
+            <select name="disk">
+                <option value="System 1.0">System 1.0</option>
+                <option value="System 3.0">System 3.0</option>
+                <option value="System 6.0.4">System 6.0.4</option>
+                <option value="System 7.0">System 7.0</option>
+                <option value="System 7.1">System 7.1</option>
+                <option value="System 7.5">System 7.5</option>
+            </select>
+
+            <label>
+                <input
+                    type="checkbox"
+                    name="infinite_hd"
+                    value="true"
+                    checked
+                />
+                Infinite HD
+            </label>
+
+            <label>
+                <input
+                    type="checkbox"
+                    name="screen_update_messages"
+                    value="true"
+                />
+                Get screen updates
+            </label>
+
+            <label>
+                <input type="checkbox" name="paused" value="true" />
+                Start paused
+            </label>
+
+            <label>
+                <input type="checkbox" name="auto_pause" value="true" />
+                Auto-pause
+            </label>
+
+            <label>
+                <input type="checkbox" name="debug_fallback" value="true" />
+                Use fallback mode
+            </label>
+
+            <label>
+                <input
+                    type="text"
+                    name="settings"
+                    value='{"swapControlAndCommand":true}'
+                />
+                Settings (JSON)
+            </label>
+
+            <input type="submit" value="Load" />
+        </form>
+
+        <div id="iframes" style="display: flex; gap: 10px">
+            <div class="iframe-outer">
+                <iframe
+                    allow="cross-origin-isolated"
+                    style="border: 2px solid red"
+                    height="342"
+                    width="512"
+                    name="frame"
+                ></iframe>
+                <div>
+                    <button class="pause">Pause</button>
+                    <button class="unpause">Unpause</button>
+                </div>
+                <div>
+                    <input type="number" name="mouse_x" placeholder="x" />
+                    <input type="number" name="mouse_y" placeholder="y" />
+                    <input type="number" name="mouse_dx" placeholder="dx" />
+                    <input type="number" name="mouse_dy" placeholder="dy" />
+                    <button class="mousemove">Mouse Move</button>
+                </div>
+                <div>
+                    <input type="number" name="mouse_button" value="0" />
+                    <button class="mousedown">Mouse Down</button>
+                    <button class="mouseup">Mouse Up</button>
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        name="key_code"
+                        placeholder="KeyA"
+                        size="5"
+                    />
+                    <button class="keydown">Key Down</button>
+                    <button class="keyup">Key Up</button>
+                </div>
+                <div>
+                    <input
+                        type="url"
+                        name="disk_url"
+                        placeholder="https://archive.org/download/..."
+                        size="62"
+                    />
+                    <button class="loaddisk">Load Disk</button>
+            </div>
+        </div>
+
+        <script>
+            const frame = document.querySelector("iframe");
+
+            onmessage = function (e) {
+                const data = e.data;
+                switch (data.type) {
+                    case "emulator_screen":
+                        const {data: screenData, width, height} = data;
+                        console.log(
+                            `${width}x${height} screen received (${screenData.length.toLocaleString()} bytes)`
+                        );
+                }
+            };
+
+            // Duplicate everything
+
+            const newFormEl = document.querySelector("form").cloneNode(true);
+            newFormEl.target = "frame2";
+            document.body.insertBefore(
+                newFormEl,
+                document.querySelector("form").nextElementSibling
+            );
+
+            const newIframeEl = document
+                .querySelector("#iframes .iframe-outer")
+                .cloneNode(true);
+            newIframeEl.querySelector("iframe").name = "frame2";
+            document.querySelector("#iframes").append(newIframeEl);
+
+            // Event listeners
+
+            document.querySelectorAll(".pause").forEach(el => {
+                el.onclick = function () {
+                    el.closest(".iframe-outer")
+                        .querySelector("iframe")
+                        .contentWindow.postMessage(
+                            {type: "emulator_pause"},
+                            "*"
+                        );
+                };
+            });
+            document.querySelectorAll(".unpause").forEach(el => {
+                el.onclick = function () {
+                    el.closest(".iframe-outer")
+                        .querySelector("iframe")
+                        .contentWindow.postMessage(
+                            {type: "emulator_unpause"},
+                            "*"
+                        );
+                };
+            });
+            document.querySelectorAll(".mousemove").forEach(el => {
+                el.onclick = function () {
+                    const outer = el.closest(".iframe-outer");
+                    const x = outer.querySelector(
+                        "input[name='mouse_x']"
+                    ).valueAsNumber;
+                    const y = outer.querySelector(
+                        "input[name='mouse_y']"
+                    ).valueAsNumber;
+                    const deltaX = outer.querySelector(
+                        "input[name='mouse_dx']"
+                    ).valueAsNumber;
+                    const deltaY = outer.querySelector(
+                        "input[name='mouse_dy']"
+                    ).valueAsNumber;
+                    outer
+                        .querySelector("iframe")
+                        .contentWindow.postMessage(
+                            {type: "emulator_mouse_move", x, y, deltaX, deltaY},
+                            "*"
+                        );
+                };
+            });
+            document.querySelectorAll(".mousedown").forEach(el => {
+                el.onclick = function () {
+                    const outer = el.closest(".iframe-outer");
+                    const button = outer.querySelector(
+                        "input[name='mouse_button']"
+                    ).valueAsNumber;
+                    outer
+                        .querySelector("iframe")
+                        .contentWindow.postMessage(
+                            {type: "emulator_mouse_down", button},
+                            "*"
+                        );
+                };
+            });
+            document.querySelectorAll(".mouseup").forEach(el => {
+                el.onclick = function () {
+                    const outer = el.closest(".iframe-outer");
+                    const button = outer.querySelector(
+                        "input[name='mouse_button']"
+                    ).valueAsNumber;
+                    outer
+                        .querySelector("iframe")
+                        .contentWindow.postMessage(
+                            {type: "emulator_mouse_up", button},
+                            "*"
+                        );
+                };
+            });
+            document.querySelectorAll(".keydown").forEach(el => {
+                el.onclick = function () {
+                    const outer = el.closest(".iframe-outer");
+                    const code = outer.querySelector(
+                        "input[name='key_code']"
+                    ).value;
+                    outer
+                        .querySelector("iframe")
+                        .contentWindow.postMessage(
+                            {type: "emulator_key_down", code},
+                            "*"
+                        );
+                };
+            });
+            document.querySelectorAll(".keyup").forEach(el => {
+                el.onclick = function () {
+                    const outer = el.closest(".iframe-outer");
+                    const code = outer.querySelector(
+                        "input[name='key_code']"
+                    ).value;
+                    outer
+                        .querySelector("iframe")
+                        .contentWindow.postMessage(
+                            {type: "emulator_key_up", code},
+                            "*"
+                        );
+                };
+            });
+            document.querySelectorAll(".loaddisk").forEach(el => {
+                el.onclick = function () {
+                    const outer = el.closest(".iframe-outer");
+                    const url = outer.querySelector(
+                        "input[name='disk_url']"
+                    ).value;
+                    outer
+                        .querySelector("iframe")
+                        .contentWindow.postMessage(
+                            {type: "emulator_load_disk", url},
+                            "*"
+                        );
+                };
+            });
+
+            onload = function () {
+                if (location.search.includes("autoload")) {
+                    for (const form of document.querySelectorAll("form")) {
+                        form.submit();
+                    }
+                }
+            };
+        </script>
+    </body>
+</html>

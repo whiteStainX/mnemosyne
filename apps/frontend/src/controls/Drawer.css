@@ -1,0 +1,256 @@
+.Drawers-Container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    gap: 8px;
+    pointer-events: none;
+}
+
+.Drawer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
+}
+
+.Drawer[hidden] {
+    display: none;
+}
+
+.Drawer-Title {
+    padding: 4px 4px 4px 28px;
+    background-position: 4px 50%;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    border-radius: 4px 4px 0 0;
+    border: solid 1px black;
+    border-bottom-width: 0;
+    position: relative;
+    top: 1px; /* to cover up the border of the list */
+    pointer-events: auto;
+    user-select: none;
+}
+
+.Drawer-Title-Smooth-Scale {
+    image-rendering: auto;
+}
+
+.Drawer-Classic .Drawer-Title {
+    background-color: white;
+}
+
+.Drawer-Classic .Drawer-Title:active {
+    background-color: #eee;
+}
+
+.Drawer-Platinum .Drawer-Title {
+    background-color: #ddd;
+}
+
+.Drawer-Platinum .Drawer-Title:active {
+    background-color: #ccc;
+}
+
+.Drawer-Platinum.Drawer-Expanded .Drawer-Title {
+    background-color: #ccc;
+}
+
+.Drawer-Platinum.Drawer-Expanded .Drawer-Title:active {
+    background-color: #bbb;
+}
+
+.Drawer-Platinum.Drawer-Expanded .Drawer-Title:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: solid 1px red;
+    pointer-events: none;
+    border-radius: 4px 4px 0 0;
+    border-top-color: #fff;
+    border-left-color: #fff;
+    border-bottom-color: #999;
+    border-right-color: #999;
+}
+
+.Drawer-NeXT .Drawer-Title {
+    background-color: #aaa;
+    border: solid 1px;
+    border-color: #fff #555 #555 #fff;
+    color: #000;
+    border-radius: 0;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.Drawer-Expanded.Drawer-NeXT .Drawer-Title {
+    box-sizing: border-box;
+    width: 80vw;
+    background-color: #000;
+    border-color: #aaa #555 #555 #aaa;
+    color: #fff;
+    outline: solid 1px #000;
+}
+
+.Drawer-Contents {
+    background: white;
+    border: solid 1px black;
+    border-bottom-width: 0;
+    border-radius: 4px 4px 0 0;
+    height: 50vh;
+    width: 80vw;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.Drawer-Contents.Drawer-Contents-Tall {
+    height: 70vh;
+}
+
+.Drawer-Contents-Platinum {
+    background: transparent;
+    border-radius: 0;
+    border-image: url(../Images/PlatinumDrawerFrame.png);
+    border-image-width: 6px 5px 0 4px;
+    border-image-slice: 6 5 0 4 fill;
+    border-width: 6px 5px 0 4px;
+    image-rendering: pixelated;
+}
+
+.Drawer-NeXT .Drawer-Contents {
+    border-radius: 0;
+    background: #aaa;
+}
+
+.Drawer-Header {
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: start;
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.Drawer-Classic .Drawer-Header {
+    border-bottom: solid 1px #9e9e9e;
+}
+
+.Drawer-Platinum .Drawer-Header {
+    background: #e7e7e7;
+    border-bottom: solid 1px #000;
+    position: relative;
+}
+
+.Drawer-Platinum .Drawer-Header:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    border: solid 1px;
+    border-top-color: #fff;
+    border-left-color: #fff;
+    border-right-color: #c0c0c0;
+    border-bottom-color: #c0c0c0;
+    pointer-events: none;
+}
+
+.Drawer-NeXT .Drawer-Header {
+    background: #aaa;
+    border-top: solid 1px #000;
+    border-bottom: solid 1px #555;
+    position: relative;
+}
+
+.Drawer-NeXT .Drawer-Header:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+}
+
+.Drawer-List {
+    overflow: auto;
+    overscroll-behavior: contain;
+}
+
+.Drawer-List.Drawer-List-Platinum.Drawer-List-Tall {
+    min-height: 100%;
+    background: #e7e7e7;
+}
+
+.Drawer-List-Category {
+    margin: 8px 0;
+}
+
+.Drawer-List-Category h3 {
+    position: sticky;
+    top: 0;
+    margin: 8px 0;
+    background: linear-gradient(to right, #ddd, #fff);
+    padding: 1px 8px;
+}
+
+.Drawer-NeXT .Drawer-List-Category h3 {
+    /* Simulate a 2x2 gray and clear checkerboard, similar to a disabled scrollbar in NeXTSTEP 3.3 */
+    background-position:
+        0px 0px,
+        1px 1px;
+    background-size: 2px 2px;
+    background-image:
+        linear-gradient(
+            45deg,
+            #555 25%,
+            transparent 25%,
+            transparent 75%,
+            #555 75%,
+            #555 100%
+        ),
+        linear-gradient(
+            45deg,
+            #555 25%,
+            transparent 25%,
+            transparent 75%,
+            #555 75%,
+            #555 100%
+        );
+}
+
+.Drawer-List-Category-Contents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.Drawer-Loading {
+    padding: 8px;
+    text-align: center;
+    opacity: 0.7;
+}
+
+@media (max-width: 440px) {
+    .Drawers-Container {
+        justify-content: start;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .Drawer-Contents {
+        width: 100%;
+    }
+}

@@ -1,0 +1,68 @@
+.Monkey {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.Monkey-Sidebar {
+    height: calc(min(90vh, var(--monkey-screen-height) * 1.1));
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.Monkey-Title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.Monkey-Title h1 {
+    margin: 0 !important;
+}
+
+.Monkey-Title img {
+    image-rendering: pixelated;
+}
+
+@media (max-width: 640px) {
+    .Monkey {
+        flex-direction: column;
+    }
+
+    .Monkey-Sidebar {
+        height: 50vh;
+        width: 80vw;
+    }
+}
+
+.Monkey-ScreenFrame {
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.Monkey-ScreenFrame .ScreenFrame-ScreenContainer {
+    cursor: not-allowed;
+}
+
+.Monkey-ScreenFrame iframe {
+    pointer-events: none;
+}
+
+.Monkey-ScreenFrame-PointerEventsEnabled .ScreenFrame-ScreenContainer {
+    cursor: default;
+}
+
+.Monkey-ScreenFrame-PointerEventsEnabled iframe {
+    pointer-events: auto;
+}
+
+.Monkey-ScreenFrame.ScreenFrame-Bezel-Pinstripes {
+    box-shadow: 0 16px 20px 5px rgba(0, 0, 0, 0.2);
+}
+
+.Monkey-Controls {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
